@@ -142,7 +142,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="chessBoard.cpp" />
-    <ClCompile Include="src.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
