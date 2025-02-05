@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
-/ /    asdfaskdjf
-
+/ /    asdfa
 int main() {
 
 }
