@@ -6,6 +6,7 @@
 #include <cctype>
 #include <string>
 
+
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 800;
 const int SQUARE_SIZE = SCREEN_WIDTH / 8;

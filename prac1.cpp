@@ -54,6 +54,7 @@ public :
 			legalmove[x - 1][y + 1] = 1;
 		}
 	}
+	}
 	else { // black		
 		if (isfirstmove) {
 			legalmove[x][y - 2] = 1;
@@ -70,10 +71,12 @@ public :
 				legalmove[x - 1][y - 1] = 1;
 			}
 		}
+	}
 
 		memset(legalmove, 0, sizeof(legalmove));
 };
-	class knight : public piece {
+
+class knight : public piece {
 	public : 
 		int isenemy;
 		if (isWhite) {
@@ -108,7 +111,8 @@ public :
 		}
 		memset(legalmove, 0, sizeof(legalmove));
 	};
-	class rook : public piece {
+
+class rook : public piece {
 	public :
 		int isenemy;
 		if (isWhite) 
@@ -119,13 +123,241 @@ public :
 			isenemy = 1;
 		}
 
-		for (int i =0; i<7-y; i++) {
+		for (int i = 0; i < 7 - y; i++) {
+			if (board[x][y + i] == 0) {
+				legalmove[x][y + i] = 1;
+			}
+			else if (board[x][y + i] == isenemy) {
+				legalmove[x][y + i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+			
+		
 
+		for (int i = 0; i < y; i++) {
+			if (board[x][y - i] == 0 || board[x][y - i] == isenemy) {
+				legalmove[x][y - i] = 1;
+			}
+			else if (board[x][y - i] == isenemy) {
+				legalmove[x][y - i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < 7 - x; i++) {
+			if (board[x + i][y] == 0 || board[x + i][y] == isenemy) {
+				legalmove[x + i][y] = 1;
+			}
+			else if (board[x + i][y] == isenemy) {
+				legalmove[x + i][y] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < x; i++) {
+			if (board[x - i][y] == 0 || board[x - i][y] == isenemy) {
+				legalmove[x - i][y] = 1;
+			}
+			else if (board[x - i][y] == isenemy) {
+				legalmove[x - i][y] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
 
+		memset(legalmove, 0, sizeof(legalmove));
 	};
 
+class bishop : public piece {
+	public:
+		int isenemy;
+		if (isWhite) {
+			isenemy = 2;
+		}
+		else {
+			isenemy = 1;
+		}
+		for (int i = 0; i < 7 - x && i< 7-y; i++) {
+			if (board[x + i][y + i] == 0 || board[x + i][y + i] == isenemy) {
+				legalmove[x + i][y + i] = 1;
+			}
+			else if (board[x + i][y + i] == isenemy) {
+				legalmove[x + i][y + i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < x && i<y; i++) {
+			if (board[x - i][y - i] == 0 || board[x - i][y - i] == isenemy) {
+				legalmove[x - i][y - i] = 1;
+			}
+			else if (board[x - i][y - i] == isenemy) {
+				legalmove[x - i][y - i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < 7 - x && i< 7-y; i++) {
+			if (board[x + i][y - i] == 0 || board[x + i][y - i] == isenemy) {
+				legalmove[x + i][y - i] = 1;
+			}
+			else if (board[x + i][y - i] == isenemy) {
+				legalmove[x + i][y - i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < x && i < y; i++) {
+			if (board[x - i][y + i] == 0 || board[x - i][y + i] == isenemy) {
+				legalmove[x - i][y + i] = 1;
+			}
+			else if (board[x - i][y + i] == isenemy) {
+				legalmove[x - i][y + i] = 1;
+				break;
+			}
+			else
+			{
+				break;
+			}
+		}
+		memset(legalmove, 0, sizeof(legalmove));
+	};
+
+class queen : public piece {
+	public : 
+		int isenemy;
+		if (isWhite) {
+			isenemy = 2;
+		}
+		else {
+			isenemy = 1;
+		}
+
+		for (int i = 0; i < 7 - y; i++) {
+			if (board[x][y + i] == 0) {
+				legalmove[x][y + i] = 1;
+			}
+			else if (board[x][y + i] == isenemy) {
+				legalmove[x][y + i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+
+	
+
+	for (int i = 0; i < y; i++) {
+		if (board[x][y - i] == 0 || board[x][y - i] == isenemy) {
+			legalmove[x][y - i] = 1;
+		}
+		else if (board[x][y - i] == isenemy) {
+			legalmove[x][y - i] = 1;
+			break;
+		}
+		else {
+			break;
+		}
+	}
+	for (int i = 0; i < 7 - x; i++) {
+		if (board[x + i][y] == 0 || board[x + i][y] == isenemy) {
+			legalmove[x + i][y] = 1;
+		}
+		else if (board[x + i][y] == isenemy) {
+			legalmove[x + i][y] = 1;
+			break;
+		}
+		else {
+			break;
+		}
+	}
+	for (int i = 0; i < x; i++) {
+		if (board[x - i][y] == 0 || board[x - i][y] == isenemy) {
+			legalmove[x - i][y] = 1;
+		}
+		else if (board[x - i][y] == isenemy) {
+			legalmove[x - i][y] = 1;
+			break;
+		}
+		else {
+			break;
+		}
+	}
+
+		for (int i = 0; i < 7 - x && i < 7 - y; i++) {
+			if (board[x + i][y + i] == 0 || board[x + i][y + i] == isenemy) {
+				legalmove[x + i][y + i] = 1;
+			}
+			else if (board[x + i][y + i] == isenemy) {
+				legalmove[x + i][y + i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < x && i < y; i++) {
+			if (board[x - i][y - i] == 0 || board[x - i][y - i] == isenemy) {
+				legalmove[x - i][y - i] = 1;
+			}
+			else if (board[x - i][y - i] == isenemy) {
+				legalmove[x - i][y - i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < 7 - x && i < 7 - y; i++) {
+			if (board[x + i][y - i] == 0 || board[x + i][y - i] == isenemy) {
+				legalmove[x + i][y - i] = 1;
+			}
+			else if (board[x + i][y - i] == isenemy) {
+				legalmove[x + i][y - i] = 1;
+				break;
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 0; i < x && i < y; i++) {
+			if (board[x - i][y + i] == 0 || board[x - i][y + i] == isenemy) {
+				legalmove[x - i][y + i] = 1;
+			}
+			else if (board[x - i][y + i] == isenemy) {
+				legalmove[x - i][y + i] = 1;
+				break;
+			}
+			else
+			{
+				break;
+			}
+		}
+		memset(legalmove, 0, sizeof(legalmove));
+	};
+
+class king : public piece {};	 // not implemented yet
 
 int main() {
+
+
 
 	return 0;
 }
