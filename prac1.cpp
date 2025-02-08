@@ -25,6 +25,17 @@ int legalmove[8][8] = { // 0 = illegal, 1 = move, 2 = capture
 	{0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0}
 };
+char piece[8][8] = {
+	{'r','n','b','q','k','b','n','r'},
+	{'p','p','p','p','p','p','p','p'},
+	{'','','','','','','',''},
+	{'','','','','','','',''},
+	{'','','','','','','',''},
+	{'','','','','','','',''},
+	{'P','P','P','P','P','P','P','P'},
+	{'R','N','B','Q','K','B','N','R'}
+};
+
 bool iswhiteturn = true;
 
 class piece {
@@ -37,15 +48,15 @@ public :
 
 class pawn : public piece {
 public :
-	bool isfirstmove;
+	bool isfirstmove ;
 	if (isWhite) { // white
 	if (isfirstmove) {
 		legalmove[x][y+2] = 1;
 		legalmove[x][y+1] = 1;
 	}
 	else {
-		if (board[x + 1][y] == 0) {
-			legalmove[x + 1][y] = 1;
+		if (board[x][y + 1] == 0) {
+			legalmove[x][y + 1] = 1;
 		}
 		if (board[x + 1][y + 1] == 2) {
 			legalmove[x + 1][y + 1] = 1;
